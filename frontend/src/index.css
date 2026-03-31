@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ───── Light Theme ───── */
+:root {
+  --color-bg-primary: #FFF8E8;
+  --color-bg-secondary: #DEE8CE;
+  --color-bg-elevated: #FFFFFF;
+  --color-bg-input: #FFF8E8;
+
+  --color-text-primary: #2C1810;
+  --color-text-secondary: #6B4F3A;
+  --color-text-tertiary: #A38B72;
+  --color-text-inverse: #FFF8E8;
+
+  --color-brand-primary: #BB6653;
+  --color-brand-secondary: #F08B51;
+  --color-brand-accent: #D4543A;
+  --color-brand-glow: rgba(187, 102, 83, 0.25);
+
+  --color-status-success: #5B8C51;
+  --color-status-error: #C44536;
+  --color-status-warning: #E8A838;
+  --color-status-info: #5B89A6;
+
+  --color-border-default: #C8D4B8;
+  --color-border-strong: #A3B08F;
+  --color-border-brand: #BB6653;
+}
+
+/* ───── Dark Theme ───── */
+.dark {
+  --color-bg-primary: #222831;
+  --color-bg-secondary: #1A1F27;
+  --color-bg-elevated: #393E46;
+  --color-bg-input: #393E46;
+
+  --color-text-primary: #DFD0B8;
+  --color-text-secondary: #B5A896;
+  --color-text-tertiary: #948979;
+  --color-text-inverse: #222831;
+
+  --color-brand-primary: #D4876E;
+  --color-brand-secondary: #F0A06B;
+  --color-brand-accent: #E8B07A;
+  --color-brand-glow: rgba(212, 135, 110, 0.30);
+
+  --color-status-success: #7BC46E;
+  --color-status-error: #E06B5E;
+  --color-status-warning: #F0C060;
+  --color-status-info: #6AABB5;
+
+  --color-border-default: #4A5060;
+  --color-border-strong: #948979;
+  --color-border-brand: #D4876E;
+}
+
+/* ───── Base ───── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Safe-area insets for notch / dynamic-island devices */
+  padding-left: env(safe-area-inset-left, 0);
+  padding-right: env(safe-area-inset-right, 0);
+}
+
+/* Prevent text from becoming too narrow on tiny screens */
+html { min-width: 320px; }
+
+/* Tap-highlight on mobile */
+@media (pointer: coarse) {
+  button, a, [role="option"], [role="listbox"] {
+    -webkit-tap-highlight-color: rgba(0,0,0,0.06);
+  }
+}
+
+/* ───── Theme transition (only colours, fast) ───── */
+body,
+header, main, footer,
+input, button, select, textarea,
+a, div, section, article,
+ul, ol, li,
+h1, h2, h3, h4, h5, h6, p, span {
+  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease, box-shadow 200ms ease;
+}
+
+/* ───── Accessibility ───── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+}
+
+/* ───── Scrollbar ───── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-bg-secondary); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-brand-primary); }
+
+/* scrollbar-color for Firefox */
+* { scrollbar-color: var(--color-border-strong) var(--color-bg-secondary); scrollbar-width: thin; }
+
+/* ───── Keyframes ───── */
+@keyframes fadeIn   { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp  { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes spin     { to { transform: rotate(360deg); } }
+@keyframes progress { from { background-position: 0 0; } to { background-position: 40px 0; } }
+
+/* ───── Utility classes ───── */
+.animate-fade-in    { animation: fadeIn .4s ease-out both; }
+.animate-slide-up   { animation: slideUp .4s ease-out both; }
+.animate-spin-custom { animation: spin .8s linear infinite; }
+
+.progress-stripe {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255,255,255,.15) 25%, transparent 25%,
+    transparent 50%, rgba(255,255,255,.15) 50%,
+    rgba(255,255,255,.15) 75%, transparent 75%
+  );
+  background-size: 40px 40px;
+  animation: progress .6s linear infinite;
+}

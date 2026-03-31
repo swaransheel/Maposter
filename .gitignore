@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environments
+.venv/
+venv/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Frontend / Node
+frontend/node_modules/
+frontend/dist/
+
+# Build and cache artifacts
+cache/
+fonts/cache/
+posters/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
