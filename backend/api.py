@@ -687,6 +687,7 @@ def generate_map():
                 token,
                 query="?select=id,created_at",
                 body={
+                    "user_id": user_id,
                     "city": city,
                     "country": country,
                     "latitude": latitude,
@@ -696,13 +697,28 @@ def generate_map():
                 },
                 prefer="return=representation",
             )
-            if ins_status >= 400 or not inserted:
+            if ins_status >= 400:
+                print(f"Supabase poster insert failed: status={ins_status}, response={inserted}")
+                setup_hint = None
+                if isinstance(inserted, dict):
+                    code = str(inserted.get("code", ""))
+                    message = str(inserted.get("message", ""))
+                    details = str(inserted.get("details", ""))
+                    combined = f"{message} {details}".lower()
+                    if code == "42P01" or "relation" in combined or "does not exist" in combined:
+                        setup_hint = "Supabase tables are not initialized. Run supabase/schema.sql in your Supabase SQL editor."
                 return jsonify({
                     "success": False,
-                    "error": "Generated file but failed to persist poster metadata in Supabase"
+                    "error": "Generated file but failed to persist poster metadata in Supabase",
+                    "status": ins_status,
+                    "details": inserted,
+                    "hint": setup_hint,
                 }), 500
 
-            poster_row = inserted[0]
+            if not inserted:
+                print("Supabase poster insert succeeded but returned no representation")
+
+            poster_row = inserted[0] if isinstance(inserted, list) and inserted else {}
             latest_poster = {
                 "id": poster_row.get("id"),
                 "city": city,
