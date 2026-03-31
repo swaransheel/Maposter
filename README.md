@@ -98,9 +98,3 @@ npm run build
 - `POST /api/generate`
 - `GET /api/cities/search?q=...`
 
-
-```powershell
-git remote add origin <your-repo-url>
-git branch -M main
-git push -u origin main
-```
