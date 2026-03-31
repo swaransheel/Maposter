@@ -98,18 +98,6 @@ npm run build
 - `POST /api/generate`
 - `GET /api/cities/search?q=...`
 
-## Git Upload Checklist
-
-1. Confirm `.gitignore` is present (already added).
-2. Initialize repository:
-
-```powershell
-git init
-git add .
-git commit -m "Initial commit"
-```
-
-3. Add your remote and push:
 
 ```powershell
 git remote add origin <your-repo-url>
