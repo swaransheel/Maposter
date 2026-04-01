@@ -6,14 +6,14 @@ flake8==7.3.0
 fonttools==4.61.1
 geographiclib==2.1
 geopandas==1.1.2
-geopy==2.4.1
+# geopy
 idna==3.11
 kiwisolver==1.4.9
 lat_lon_parser==1.3.1
 matplotlib==3.10.8
 mccabe==0.7.0
 networkx==3.6.1
-numpy==2.4.0
+numpy==2.5.0
 osmnx==2.0.7
 packaging==25.0
 pandas==2.3.3

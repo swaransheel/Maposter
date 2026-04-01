@@ -20,12 +20,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     const stored = localStorage.getItem('theme') as Theme | null
     if (stored) return stored
     
-    // 2. Check system preference
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark'
-    }
-    
-    // 3. Default to light
+    // 2. Default to light (ignore system preference)
     return 'light'
   })
 
