@@ -32,8 +32,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import osmnx as ox
 from geopandas import GeoDataFrame
-# geopy not available on PyPI currently, skip geocoding feature
-# from geopy.geocoders import Nominatim
+from geopy.geocoders import Nominatim
 from lat_lon_parser import parse
 from font_management import load_fonts
 from matplotlib.font_manager import FontProperties
